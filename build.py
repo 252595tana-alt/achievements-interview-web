@@ -11,5 +11,5 @@ if "</script" in js.lower():
     raise ValueError("script.js contains an unexpected HTML script terminator")
 shell = (root / "shell.html").read_text(encoding="utf-8")
 result = shell.replace("__STYLES__", "<style>\n" + css + "\n</style>").replace("__SCRIPT__", "<script>\n" + js + "\n</script>")
-(root / "index.html").write_text(result, encoding="utf-8")
+(root / "index.html").write_bytes(result.encode("utf-8"))
 print("Built index.html:", len(result.encode("utf-8")), "bytes")
